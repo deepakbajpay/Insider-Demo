@@ -1,0 +1,17 @@
+
+o
+java:S3776^"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(Çé‚Ô8†öç¿¢.
+h
+java:S11924"FDefine a constant instead of duplicating this literal "error" 8 times.(¾ÄáÑøÿÿÿÿ8àØµ¿¢.
+s	java:S117†"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(üëÑúÿÿÿÿ8†öç¿¢.
+N
+java:S1128"1Remove this unused import 'okhttp3.ResponseBody'.(Õ«ø8ıö¿¢.
+t
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(šŸÀŠúÿÿÿÿ8àØµ¿¢.
+H
+java:S1128"+Remove this unused import 'retrofit2.Call'.(Çö÷›8ıö¿¢.
+r	java:S117F"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(üëÑúÿÿÿÿ8àØµ¿¢.
+g
+java:S1858‰"D"getMessage" returns a string, there's no need to call "toString()".(Ê¢ïºÿÿÿÿÿ8†öç¿¢.
+f
+java:S1858I"D"getMessage" returns a string, there's no need to call "toString()".(Ê¢ïºÿÿÿÿÿ8ãÚÇ¿¢.

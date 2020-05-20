@@ -1,0 +1,8 @@
+
+~
+java:S14888"aImmediately return this expression instead of assigning it to the temporary variable "headerMap".(ÈÖö8½Ê¿¢.
+C
+java:S3010"!Remove this assignment of "mCtx".(·‹–Şúÿÿÿÿ8½Ê¿¢.
+P
+java:S1068"3Remove this unused "mProgressDialog" private field.(ˆÀ“Ì8Ë÷Ù¿¢.
+]	java:S125E"<This block of commented-out lines of code should be removed.(İóçŠşÿÿÿÿ8Ë÷Ù¿¢.

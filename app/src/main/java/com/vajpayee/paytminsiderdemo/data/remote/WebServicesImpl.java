@@ -7,20 +7,16 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.vajpayee.paytminsiderdemo.ui.dashboard.DashboardContract;
 import com.vajpayee.paytminsiderdemo.ui.util.Constants;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-
 public class WebServicesImpl implements WebServices {
     @Override
-    public void getEvents(Context context,String apiUrl, FetchDataListener listener) {
+    public void getEvents(Context context, String apiUrl, FetchDataListener listener) {
         try {
-            getRequest(context,listener,apiUrl);
+            getRequest(context, listener, apiUrl);
         } catch (JSONException e) {
             e.printStackTrace();
             listener.onFetchFailure("Something went wrong");
@@ -36,7 +32,7 @@ public class WebServicesImpl implements WebServices {
         }
         //base server URL
 
-        String baseUrl= Constants.BASE_URL;
+        String baseUrl = Constants.BASE_URL;
         //add extension api url received from caller
         //and make full api
         String url = baseUrl + ApiURL;
@@ -47,19 +43,19 @@ public class WebServicesImpl implements WebServices {
                     public void onResponse(JSONObject response) {
                         try {
                             if (listener != null) {
-                                if(response.has("response")) {
+                                if (response.has("response")) {
                                     //received response
                                     //call onFetchComplete of the listener
                                     listener.onFetchComplete(response);
-                                }else if(response.has("error")){
+                                } else if (response.has("error")) {
                                     //has error in response
                                     //call onFetchFailure of the listener
                                     listener.onFetchFailure(response.getString("error"));
-                                } else{
+                                } else {
                                     listener.onFetchComplete(null);
                                 }
                             }
-                        }catch (JSONException e){
+                        } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
@@ -70,10 +66,10 @@ public class WebServicesImpl implements WebServices {
                     listener.onFetchFailure("Network Connectivity Problem");
                 } else if (error.networkResponse != null && error.networkResponse.data != null) {
                     VolleyError volley_error = new VolleyError(new String(error.networkResponse.data));
-                    String errorMessage      = "";
+                    String errorMessage = "";
                     try {
                         JSONObject errorJson = new JSONObject(volley_error.getMessage().toString());
-                        if(errorJson.has("error")) errorMessage = errorJson.getString("error");
+                        if (errorJson.has("error")) errorMessage = errorJson.getString("error");
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -101,7 +97,7 @@ public class WebServicesImpl implements WebServices {
             listener.onFetchStart();
         }
         //base server URL
-        String baseUrl= Constants.BASE_URL;
+        String baseUrl = Constants.BASE_URL;
         //add extension api url received from caller
         //and make full api
         String url = baseUrl + ApiURL;
@@ -109,35 +105,33 @@ public class WebServicesImpl implements WebServices {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                            System.out.println("WebServicesImpl.onResponse "+response);
-
-                            if (listener != null) {
-                                listener.onFetchComplete(response);
-                            }
+                        if (listener != null) {
+                            listener.onFetchComplete(response);
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 if (error instanceof NoConnectionError) {
-                    listener.onFetchFailure("Network Connectivity Problem");
+                    if (listener != null) listener.onFetchFailure("Network Connectivity Problem");
                 } else if (error.networkResponse != null && error.networkResponse.data != null) {
-                    VolleyError volley_error = new VolleyError(new String(error.networkResponse.data));
-                    String errorMessage      = "";
+                    VolleyError volleyError = new VolleyError(new String(error.networkResponse.data));
+                    String errorMessage = "";
                     try {
-                        System.out.println("WebServicesImpl.onErrorResponse "+volley_error);
-                        JSONObject errorJson = new JSONObject(volley_error.getMessage().toString());
-                        if(errorJson.has("error")) errorMessage = errorJson.getString("error");
+                        JSONObject errorJson = new JSONObject(volleyError.getMessage());
+                        if (errorJson.has("error")) errorMessage = errorJson.getString("error");
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
                     if (errorMessage.isEmpty()) {
-                        errorMessage = volley_error.getMessage();
+                        errorMessage = volleyError.getMessage();
                     }
 
                     if (listener != null) listener.onFetchFailure(errorMessage);
                 } else {
-                    listener.onFetchFailure("Something went wrong. Please try again later");
+                    if (listener != null)
+                        listener.onFetchFailure("Something went wrong. Please try again later");
                 }
 
             }

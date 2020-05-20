@@ -10,11 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
 import com.vajpayee.paytminsiderdemo.R;
-import com.vajpayee.paytminsiderdemo.ui.util.Utilities;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

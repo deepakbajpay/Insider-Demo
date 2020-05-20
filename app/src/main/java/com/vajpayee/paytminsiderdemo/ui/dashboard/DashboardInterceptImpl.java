@@ -3,19 +3,10 @@ package com.vajpayee.paytminsiderdemo.ui.dashboard;
 import android.content.Context;
 import android.util.Log;
 
-import com.vajpayee.paytminsiderdemo.data.remote.APIClient;
 import com.vajpayee.paytminsiderdemo.data.remote.FetchDataListener;
 import com.vajpayee.paytminsiderdemo.data.remote.WebServicesImpl;
 
-import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.IOException;
-
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class DashboardInterceptImpl implements DashboardContract.DashboardInterceptor, FetchDataListener {
     OnResultListener resultListener;
@@ -59,7 +50,7 @@ public class DashboardInterceptImpl implements DashboardContract.DashboardInterc
 
     @Override
     public void onFetchComplete(JSONObject data) {
-        System.out.println("DashboardInterceptImpl.onFetchComplete "+data);
+        System.out.println("DashboardInterceptImpl.onFetchComplete " + data);
         resultListener.onSuccess(data);
     }
 
